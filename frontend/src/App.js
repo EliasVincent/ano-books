@@ -1,6 +1,14 @@
 import "./App.css";
-import cover from "./cover.jpg";
+import React from "react";
+
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
+
+import CreateBook from "./components/CreateBook";
+import  BooksList  from "./components/BooksList";
+
 function App() {
+  let [collapse, setCollapse] = React.useState(true);
   return (
     <div className="App">
       <div className="header-container">
@@ -13,56 +21,29 @@ function App() {
       </div>
       <div className="control">
         <div className="control-container">
-          <button>Create new Book</button>
+          <button onClick={() => setCollapse(!collapse)}>Create Book</button>
+
           <button>Filter Books (soon tm)</button>
-          
+        </div>
+
+        <div className={collapse ? "hidden" : "create-form-container"}>
+          <CreateBook />
         </div>
         <hr />
       </div>
 
       <div className="create-form"></div>
-      
-      <div className="books-container">
-        {/* async mapping of books in database */}
-        <div className="book">
-          <div className="book-cover-container"><img className="book-cover" alt="loading cover.." src={cover} /></div>
-          <p className="book-title">Warrior Cats</p>
 
-          <button>Edit</button>
-          <button>Delete</button>
-        </div>
-
-        <div className="book">
-          <img className="book-cover" alt="loading cover.." src={cover} />
-          <p className="book-title">Warrior Cats</p>
-        </div>
-
-        <div className="book">
-          <img className="book-cover" alt="loading cover.." src={cover} />
-          <p className="book-title">Warrior Cats</p>
-        </div>
-
-        <div className="book">
-          <img className="book-cover" alt="loading cover.." src={cover} />
-          <p className="book-title">Warrior Cats</p>
-        </div>
-
-        <div className="book">
-          <img className="book-cover" alt="loading cover.." src={cover} />
-          <p className="book-title">Warrior Cats</p>
-        </div>
-
-        <div className="book">
-          <img className="book-cover" alt="loading cover.." src={cover} />
-          <p className="book-title">Warrior Cats</p>
-        </div>
-      </div>
+      <BooksList />
 
       <div className="footer">
-        <p><small>Mautrau forever in our hearts meow</small></p>
+        <p>
+          <small>Mautrau forever in our hearts meow</small>
+        </p>
       </div>
     </div>
   );
 }
 
 export default App;
+
