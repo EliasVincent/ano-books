@@ -1,7 +1,6 @@
 import cover from "../cover.jpg";
 import React from "react";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
-import EditBook from "./EditBook";
 
 import { Link } from "react-router-dom";
 
@@ -11,7 +10,7 @@ export default function BooksList() {
   const deleteBook = async (id) => {
     console.log("called");
     try {
-      const deleteBook = await fetch(`http://localhost:5000/books/${id}`, {
+      await fetch(`http://localhost:5000/books/${id}`, {
         method: "DELETE",
       });
       setBooks(books.filter((book) => book.book_id !== id));
@@ -52,7 +51,14 @@ export default function BooksList() {
                 menuButton={<MenuButton className="book-menu">...</MenuButton>}
                 transition
               >
-                <MenuItem>Open</MenuItem>
+                <MenuItem>
+                  <Link
+                    className="book-title link"
+                    to={`/book/${book.book_id}`}
+                  >
+                    Open
+                  </Link>
+                </MenuItem>
                 <MenuItem>
                   <Link className="edit-link" to={`/book/${book.book_id}/edit`}>
                     Edit
@@ -67,12 +73,14 @@ export default function BooksList() {
               </Menu>
 
               <div className="book-cover-container">
-                <img
-                  className="book-cover"
-                  alt="loading cover.."
-                  src={cover}
-                  onClick={() => openBook(book)}
-                />
+                <Link to={`/book/${book.book_id}`}>
+                  <img
+                    className="book-cover"
+                    alt="loading cover.."
+                    src={cover}
+                    onClick={() => openBook(book)}
+                  />
+                </Link>
               </div>
               <Link className="book-title link" to={`/book/${book.book_id}`}>
                 <p className="book-title">{book.cover}</p>

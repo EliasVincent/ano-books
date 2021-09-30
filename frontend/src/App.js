@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
@@ -12,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <div className="header-container">
-        <h1 className="header">Ano Books</h1>
+        <h1 className="header"><Link to={"/"} className="home-link">Ano Books</Link></h1>
         <h3 className="subheader">Create and Edit Books</h3>
       </div>
 

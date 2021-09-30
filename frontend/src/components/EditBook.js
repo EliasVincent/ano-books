@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function EditBook(props) {
   let [bookTitle, setBookTitle] = React.useState("");
@@ -62,7 +62,7 @@ export default function EditBook(props) {
         bookContent = fetchedBook.content;
       }
 
-      const response = await fetch(`http://localhost:5000/books/${validId}`, {
+      await fetch(`http://localhost:5000/books/${validId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +88,7 @@ export default function EditBook(props) {
             <p>You can safely return to the homepage neow</p>
          </div>
       <div className="header-container">
-        <h1 className="header">Ano Books</h1>
+        <h1 className="header"><Link to={"/"} className="home-link">Ano Books</Link></h1>
         <h3 className="subheader">Create and Edit Books</h3>
       </div>
       <hr />

@@ -1,6 +1,7 @@
 import React from "react";
 //import { Redirect } from "react-router-dom";
 import Markdown from "react-markdown";
+import { Link } from "react-router-dom";
 
 import "../App.css"
 
@@ -48,7 +49,7 @@ export default function Book(props) {
   return (
     <div className="App">
       <div className="header-container">
-        <h1 className="header">Ano Books</h1>
+        <h1 className="header"><Link className="home-link" to={"/"}>Ano Books</Link></h1>
         <h3 className="subheader">Create and Edit Books</h3>
       </div>
       <hr/>
@@ -60,8 +61,8 @@ export default function Book(props) {
                 <div className="book-description">
                     <p>{fetchedBook.description}</p>
                 </div>
-                <div className="book-content">
-                    <Markdown children={fetchedBook.content} />
+                <div className="book-content-container">
+                    <Markdown className="book-content" children={fetchedBook.content} />
                 </div>
         </div>
     </div>
