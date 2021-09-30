@@ -65,6 +65,9 @@
 
     /* z-index: 999; */
 }
+.delete-button{
+    color: rgb(170, 0, 0);
+}
 
 .footer{
     margin: 15vh 20px auto auto;

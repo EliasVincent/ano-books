@@ -7,7 +7,6 @@ export default function CreateBook() {
   let [bookContent, setBookContent] = React.useState("");
 
   const onSubmit = async (e) => {
-      e.preventDefault();
     try {
         const cover = bookTitle;
         const description = bookDescription;

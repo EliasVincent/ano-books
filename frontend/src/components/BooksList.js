@@ -1,9 +1,21 @@
 import cover from "../cover.jpg";
 import React from "react";
-import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
+import { Menu, MenuItem as button, MenuButton, MenuItem } from "@szhsin/react-menu";
 
 export default function BooksList() {
   const [books, setBooks] = React.useState([]);
+
+  const deleteBook = async (id) => {
+    console.log("called")
+    try {
+      const deleteBook = await fetch(`http://localhost:5000/books/${id}`, {
+        method: "DELETE",
+      });
+      setBooks(books.filter((book) => book.book_id !== id));
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   const getBooks = async () => {
     try {
@@ -18,7 +30,9 @@ export default function BooksList() {
 
   React.useEffect(() => {
     getBooks();
-  });
+  }, []); // [] ~ = only once
+
+
 
   return (
     <div className="books-container">
@@ -26,14 +40,14 @@ export default function BooksList() {
         /* async mapping of books in database */
         books.map((book) => {
           return (
-            <div className="book">
+            <div className="book" key={book.book_id}>
               <Menu
                 menuButton={<MenuButton className="book-menu">...</MenuButton>}
                 transition
               >
                 <MenuItem>Open</MenuItem>
                 <MenuItem>Edit</MenuItem>
-                <MenuItem>Delete</MenuItem>
+                <MenuItem onClick={() => deleteBook(book.book_id)} className="delete-button">Delete</MenuItem>
               </Menu>
 
               <div className="book-cover-container">
