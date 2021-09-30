@@ -93,34 +93,36 @@ export default function EditBook(props) {
       </div>
       <hr />
       <h1>Edit Book</h1>
-      <div className="book-container">
-        <form className="create-form" onSubmit={onSubmit}>
-          <input
-            required={false}
-            className="create-input"
-            type="text"
-            placeholder={fetchedBook.title}
-            value={bookTitle}
-            onChange={(e) => setBookTitle(e.target.value)}
-          />
-          <input
-            required={false}
-            className="create-input"
-            type="text"
-            placeholder={fetchedBook.description}
-            value={bookDescription}
-            onChange={(e) => setBookDescription(e.target.value)}
-          />
-          <textarea
-            required={false}
-            className="create-content"
-            spellCheck="true"
-            placeholder={fetchedBook.content}
-            value={bookContent}
-            onChange={(e) => setBookContent(e.target.value)}
-          />
-          <button className="create-button">Edit Book</button>
-        </form>
+      <div className="create-container edit-width">
+        <div className="create-form-container">
+          <form className="create-form" onSubmit={onSubmit}>
+            <input
+              required={false}
+              className="create-input"
+              type="text"
+              placeholder={fetchedBook.title}
+              value={bookTitle}
+              onChange={(e) => setBookTitle(e.target.value)}
+            />
+            <input
+              required={false}
+              className="create-input"
+              type="text"
+              placeholder={fetchedBook.description}
+              value={bookDescription}
+              onChange={(e) => setBookDescription(e.target.value)}
+            />
+            <textarea
+              required={false}
+              className="create-content create-input"
+              spellCheck="true"
+              placeholder={fetchedBook.content}
+              value={bookContent}
+              onChange={(e) => setBookContent(e.target.value)}
+            />
+            <button className="create-button">Edit Book</button>
+          </form>
+        </div>
       </div>
     </div>
   );

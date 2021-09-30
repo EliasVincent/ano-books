@@ -34,11 +34,6 @@ export default function BooksList() {
     getBooks();
   }, []); // [] ~ = only once
 
-  // bookViewer logic
-
-  function openBook(book) {
-    console.log(book);
-  }
 
   return (
     <div className="books-container">
@@ -53,7 +48,7 @@ export default function BooksList() {
               >
                 <MenuItem>
                   <Link
-                    className="book-title link"
+                    className="open-button"
                     to={`/book/${book.book_id}`}
                   >
                     Open
@@ -78,7 +73,6 @@ export default function BooksList() {
                     className="book-cover"
                     alt="loading cover.."
                     src={cover}
-                    onClick={() => openBook(book)}
                   />
                 </Link>
               </div>

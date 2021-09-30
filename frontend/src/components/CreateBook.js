@@ -44,7 +44,7 @@ export default function CreateBook() {
         />
         <textarea
           required={true}
-          className="create-content"
+          className="create-content create-input"
           spellCheck="true"
           placeholder="Content - supports Markdown syntax (# title, - list, **fat**, *cursive*)"
           value={bookContent}
