@@ -3,13 +3,13 @@ import React from "react";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import EditBook from "./EditBook";
 
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function BooksList() {
   const [books, setBooks] = React.useState([]);
 
   const deleteBook = async (id) => {
-    console.log("called")
+    console.log("called");
     try {
       const deleteBook = await fetch(`http://localhost:5000/books/${id}`, {
         method: "DELETE",
@@ -18,7 +18,7 @@ export default function BooksList() {
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   const getBooks = async () => {
     try {
@@ -53,21 +53,34 @@ export default function BooksList() {
                 transition
               >
                 <MenuItem>Open</MenuItem>
-                <MenuItem>Edit</MenuItem>
-                <MenuItem onClick={() => deleteBook(book.book_id)} className="delete-button">Delete</MenuItem>
+                <MenuItem>
+                  <Link className="edit-link" to={`/book/${book.book_id}/edit`}>
+                    Edit
+                  </Link>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => deleteBook(book.book_id)}
+                  className="delete-button"
+                >
+                  Delete
+                </MenuItem>
               </Menu>
 
               <div className="book-cover-container">
-                <img className="book-cover" alt="loading cover.." src={cover} onClick={() => openBook(book)}/>
+                <img
+                  className="book-cover"
+                  alt="loading cover.."
+                  src={cover}
+                  onClick={() => openBook(book)}
+                />
               </div>
-              <Link
-                className="link"
-                to={`/book/${book.book_id}`}
-              ><p className="book-title">{book.cover}</p></Link>
-              <p>{book.description}</p>
+              <Link className="book-title link" to={`/book/${book.book_id}`}>
+                <p className="book-title">{book.cover}</p>
+              </Link>
+              {/* <p>{book.description}</p>
               <p>
                 Content: <p>{book.content}</p>
-              </p>
+              </p> */}
             </div>
           );
         })

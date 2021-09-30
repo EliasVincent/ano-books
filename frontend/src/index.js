@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import Book from './components/Book';
+import EditBook from './components/EditBook';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.render(
       <Route exact path="/" component={App} />
 
       <Route exact path="/book/:id" render={props => <Book {...props} />} />
+      <Route exact path="/book/:id/edit" render={props => <EditBook {...props} />} />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
