@@ -8,17 +8,16 @@ export default function CreateBook() {
 
   const onSubmit = async (e) => {
     try {
-        const cover = bookTitle;
-        const description = bookDescription;
-        const content = bookContent;
+      const cover = bookTitle;
+      const description = bookDescription;
+      const content = bookContent;
 
-        const body = { cover, description, content };
-        const response = await fetch("http://localhost:5000/books", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-        });
-
+      const body = { cover, description, content };
+      const response = await fetch("http://localhost:5000/books", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
     } catch (error) {
       console.log("lmao my sides ", error.message);
     }
@@ -28,6 +27,7 @@ export default function CreateBook() {
       <h2>Create Book</h2>
       <form className="create-form" onSubmit={onSubmit}>
         <input
+          required={true}
           className="create-input"
           type="text"
           placeholder="Book Title"
@@ -35,6 +35,7 @@ export default function CreateBook() {
           onChange={(e) => setBookTitle(e.target.value)}
         />
         <input
+          required={true}
           className="create-input"
           type="text"
           placeholder="Description (500 characters)"
@@ -42,9 +43,10 @@ export default function CreateBook() {
           onChange={(e) => setBookDescription(e.target.value)}
         />
         <textarea
+          required={true}
           className="create-content"
           spellCheck="true"
-          placeholder="Content, happy writing!"
+          placeholder="Content - supports Markdown syntax (# title, - list, **fat**, *cursive*)"
           value={bookContent}
           onChange={(e) => setBookContent(e.target.value)}
         />

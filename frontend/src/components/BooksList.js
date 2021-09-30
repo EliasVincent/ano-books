@@ -1,6 +1,9 @@
 import cover from "../cover.jpg";
 import React from "react";
-import { Menu, MenuItem as button, MenuButton, MenuItem } from "@szhsin/react-menu";
+import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
+import EditBook from "./EditBook";
+
+import { Link } from "react-router-dom"
 
 export default function BooksList() {
   const [books, setBooks] = React.useState([]);
@@ -32,7 +35,11 @@ export default function BooksList() {
     getBooks();
   }, []); // [] ~ = only once
 
+  // bookViewer logic
 
+  function openBook(book) {
+    console.log(book);
+  }
 
   return (
     <div className="books-container">
@@ -51,9 +58,12 @@ export default function BooksList() {
               </Menu>
 
               <div className="book-cover-container">
-                <img className="book-cover" alt="loading cover.." src={cover} />
+                <img className="book-cover" alt="loading cover.." src={cover} onClick={() => openBook(book)}/>
               </div>
-              <p className="book-title">{book.cover}</p>
+              <Link
+                className="link"
+                to={`/book/${book.book_id}`}
+              ><p className="book-title">{book.cover}</p></Link>
               <p>{book.description}</p>
               <p>
                 Content: <p>{book.content}</p>

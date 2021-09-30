@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import Book from './components/Book';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Route exact path="/" component={App} />
+
+      <Route exact path="/book/:id" render={props => <Book {...props} />} />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
