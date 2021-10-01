@@ -13,11 +13,13 @@ const devConfig = {
 
 const prodConfig = {
     // coming from a heroku postgres addon
-    connectionString: process.env.DATABASE_URL + "?ssl=true",
+    connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false }
 }
 
 console.log("Database_URL", process.env.DATABASE_URL);
+console.log("Detected NODE_ENV: ", process.env.NODE_ENV === "production" ? "production" : "dev")
+
 
 const pool = new Pool(process.env.NODE_ENV === "production" ? prodConfig : devConfig);
 module.exports = pool;
