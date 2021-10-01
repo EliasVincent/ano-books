@@ -9,7 +9,7 @@ export default function Book(props) {
   const [books, setBooks] = React.useState([]);
   const getBooks = async () => {
     try {
-      const response = await fetch("http://localhost:5000/books/");
+      const response = await fetch("/books/");
       const books = await response.json();
 
       setBooks(books);
@@ -43,7 +43,7 @@ export default function Book(props) {
   });
 
   if (bookExists === false) {
-    return <h1>ERROR</h1>;
+    //console.log("error bookExists = false");
   }
 
   return (

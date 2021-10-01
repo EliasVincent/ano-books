@@ -11,7 +11,7 @@ export default function EditBook(props) {
   const [hasBeenEdited, setHasBeenEdited] = React.useState(false);
   const getBooks = async () => {
     try {
-      const response = await fetch("http://localhost:5000/books/");
+      const response = await fetch("/books/");
       const books = await response.json();
 
       setBooks(books);
@@ -45,7 +45,7 @@ export default function EditBook(props) {
   });
 
   if (bookExists === false) {
-    return <h1>ERROR</h1>;
+    //console.log("error bookExists = false");
   }
 
   const onSubmit = async (e) => {
@@ -62,7 +62,7 @@ export default function EditBook(props) {
         bookContent = fetchedBook.content;
       }
 
-      await fetch(`http://localhost:5000/books/${validId}`, {
+      await fetch(`/${validId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

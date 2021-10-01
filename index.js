@@ -2,11 +2,22 @@ const express = require("express");
 const expressApp = express();
 const cors = require("cors");
 const pool = require("./db");
+const PORT = process.env.PORT || 5000; // || original_local_host
+
+// Heroku Deploy
+// process.env.PORT
+// process.env.NODE_ENV => production or undefined
 
 //cors middleware
 expressApp.use(cors())
 // get access to request.body
 expressApp.use(express.json())
+
+
+if(process.env.NODE_ENV === "production"){
+    //when in this special environment, it will launch a server for the frontend
+    expressApp.use(express.static("./frontend/build"));
+}
 
 
 // Routes - you have to specify all the actions that you want to do
@@ -65,6 +76,11 @@ expressApp.delete("/books/:id", async(req, res) => {
     } catch(err) {console.log(err.message)}
 })
 
-expressApp.listen(5000, () => {
+//catch all other routes and get thrown to home
+expressApp.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+});
+
+expressApp.listen(PORT, () => {
     console.log("express online on 5000 👂");
 })

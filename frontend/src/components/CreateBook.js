@@ -13,7 +13,7 @@ export default function CreateBook() {
       const content = bookContent;
 
       const body = { cover, description, content };
-      await fetch("http://localhost:5000/books", {
+      await fetch("/books", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

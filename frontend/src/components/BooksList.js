@@ -10,7 +10,7 @@ export default function BooksList() {
   const deleteBook = async (id) => {
     console.log("called");
     try {
-      await fetch(`http://localhost:5000/books/${id}`, {
+      await fetch(`/books/${id}`, {
         method: "DELETE",
       });
       setBooks(books.filter((book) => book.book_id !== id));
@@ -21,9 +21,8 @@ export default function BooksList() {
 
   const getBooks = async () => {
     try {
-      const response = await fetch("http://localhost:5000/books/");
+      const response = await fetch("/books/");
       const books = await response.json();
-
       setBooks(books);
     } catch (error) {
       console.log(error.message);
