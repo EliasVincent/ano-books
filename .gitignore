@@ -27,4 +27,3 @@ build
 
 .env
 
-frontend/src/setupProxy.js
