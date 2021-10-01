@@ -1,4 +1,4 @@
-CREATE DATABASE anobooks;
+-- CREATE DATABASE anobooks;
 
 CREATE TABLE book(
     book_id SERIAL PRIMARY KEY,
