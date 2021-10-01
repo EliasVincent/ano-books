@@ -17,6 +17,8 @@ const prodConfig = {
     ssl: { rejectUnauthorized: false }
 }
 
+console.log("Database_URL", process.env.DATABASE_URL);
+
 const pool = new Pool(process.env.NODE_ENV === "production" ? prodConfig : devConfig);
 module.exports = pool;
 
