@@ -16,7 +16,7 @@ expressApp.use(express.json())
 
 if(process.env.NODE_ENV === "production"){
     //when in this special environment, it will launch a server for the frontend
-    expressApp.use(express.static("./frontend/build"));
+    expressApp.use(express.static("frontend/build"));
 }
 
 
@@ -39,7 +39,7 @@ expressApp.get("/books", async(req, res) => {
     try {
         const allBooks = await pool.query("SELECT * FROM book"); // If this ever has more than two users you're f*cked :)
         res.json(allBooks.rows)
-    } catch(err) {console.log(err.message)}
+    } catch(err) {console.log("backend GET error ", err.message)}
 })
 
 // get a book
