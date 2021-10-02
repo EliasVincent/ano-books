@@ -28,7 +28,7 @@ function App() {
         </div>
 
         <div className={collapse ? "hidden" : "create-form-container"}>
-          <CreateBook />
+          <CreateBook  />
         </div>
         <hr />
       </div>

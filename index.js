@@ -26,8 +26,7 @@ expressApp.post("/books", async(req, res) => {
     try {
         console.log(req.body)
         const requestObject = req.body;
-        // pool will run a SQL Command
-        const newBook = await pool.query("INSERT INTO book (description, cover, content) VALUES($1, $2, $3) RETURNING *", [requestObject.description, requestObject.cover, requestObject.content]); // *typescript screaming in the other room*
+        const newBook = await pool.query("INSERT INTO book (description, cover, content) VALUES($1, $2, $3) RETURNING *", [requestObject.description, requestObject.cover, requestObject.content]);
         
         res.json(newBook.rows[0])
     } catch(err) {console.log(err.message)}

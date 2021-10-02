@@ -94,11 +94,16 @@
     display: flex;
     flex-direction: column;
 }
+.book-description{
+    max-width: 52ch;
+    text-align: left;
+    margin: auto 1rem auto 1rem;
+}
 .book-content{
     max-width: 52ch;
-    text-align: center;
+    text-align: left;
     align-self: center;
-
+    margin: auto 1rem auto 1rem;
     line-height: 1.5;
 }
 

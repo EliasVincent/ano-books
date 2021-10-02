@@ -7,6 +7,7 @@ export default function CreateBook() {
   let [bookContent, setBookContent] = React.useState("");
 
   const onSubmit = async (e) => {
+    e.preventDefault();
     try {
       const cover = bookTitle;
       const description = bookDescription;
@@ -18,6 +19,8 @@ export default function CreateBook() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+      // page must be reloaded manually. Without preventDefault it won't work on some browsers
+      window.location.reload(true);
     } catch (error) {
       console.log("lmao my sides ", error.message);
     }
