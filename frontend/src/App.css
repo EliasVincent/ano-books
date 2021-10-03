@@ -87,6 +87,9 @@
 }
 .book-container{
     font-family: 'Times New Roman', Times, serif;
+
+    display: flex;
+    flex-direction: column;
 }
 .book-content-container{
     position: relative;
@@ -97,7 +100,9 @@
 .book-description{
     max-width: 52ch;
     text-align: left;
+    align-self: center;
     margin: auto 1rem auto 1rem;
+    line-height: 1.5;
 }
 .book-content{
     max-width: 52ch;

@@ -39,7 +39,7 @@ function App() {
 
       <div className="footer">
         <p>
-          <small>Mautrau forever in our hearts meow</small>
+          <small><a href="mailto:riesyeti@outlook.de">report abuse</a> - this website does not store any of your personal data except the content you post</small>
         </p>
       </div>
     </div>
