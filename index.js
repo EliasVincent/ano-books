@@ -75,6 +75,17 @@ expressApp.delete("/books/:id", async(req, res) => {
     } catch(err) {console.log(err.message)}
 })
 
+// search for a book
+expressApp.get("/books/search/:search", async(req, res) => {
+    try {
+        const searchParams = req.params;
+        
+        const searchBook = await pool.query("SELECT * FROM book WHERE cover LIKE $1", ["%" + searchParams.search + "%"])
+
+        res.json(searchBook.rows)
+    } catch(err) {console.log(err.message)}
+})
+
 //catch all other routes and get thrown to home
 expressApp.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));

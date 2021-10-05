@@ -25,7 +25,7 @@ function App() {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
 
   const getBooks = async () => {
     try {
@@ -41,6 +41,19 @@ function App() {
     getBooks();
   }, []); // [] ~ = only once
 
+  // searchbar logic
+  let [search, setSearch] = React.useState("");
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(`/books/search/${search}`);
+      const books = await res.json();
+      setBooks(books);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
   return (
     <div className="App">
       <div className="header-container">
@@ -53,7 +66,9 @@ function App() {
       </div>
 
       <div className="searchbar-container">
-        <input className="searchbar" type="text" placeholder="Search.." />
+        <form onSubmit={handleSearch}>
+        <input className="searchbar" type="search" placeholder="Search.." value={search} onChange={(e) => setSearch(e.target.value)} />
+        </form>
       </div>
       <div className="control">
         <div className="control-container">
@@ -72,8 +87,7 @@ function App() {
 
       <div className="books-container">
         {
-          /* async mapping of books in database */
-          books.map((book) => {
+          books.length === 0 ? <h1>No books found</h1> : books.map((book) => {
             return (
               <div className="book" key={book.book_id}>
                 <Menu
