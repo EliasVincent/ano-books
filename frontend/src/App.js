@@ -54,6 +54,11 @@ function App() {
       console.log(error.message);
     }
   }
+
+  // sort books alphabetically
+  let [sort, setSort] = React.useState(false);
+  
+
   return (
     <div className="App">
       <div className="header-container">
@@ -74,7 +79,8 @@ function App() {
         <div className="control-container">
           <button onClick={() => setCollapse(!collapse)}>Create Book</button>
 
-          <button>Filter Books (soon tm)</button>
+          <button onClick={() => setSort(!sort)}>Toggle A-Z Sort</button>
+          
         </div>
 
         <div className={collapse ? "hidden" : "create-form-container"}>
@@ -87,7 +93,9 @@ function App() {
 
       <div className="books-container">
         {
-          books.length === 0 ? <h1>No books found</h1> : books.map((book) => {
+          books.length === 0 ? <h1>No books found</h1> : books
+          .sort((a, b) => sort ? a.cover.toLowerCase().localeCompare(b.cover.toLowerCase()) : a.book_id - b.book_id)
+          .map((book) => {
             return (
               <div className="book" key={book.book_id}>
                 <Menu
