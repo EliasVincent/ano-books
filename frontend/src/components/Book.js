@@ -1,7 +1,7 @@
 import React from "react";
 //import { Redirect } from "react-router-dom";
 import Markdown from "react-markdown";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { pageVariants, pageTransition } from "../index";
 import { motion } from "framer-motion";
@@ -44,6 +44,10 @@ export default function Book(props) {
       bookExists = true
     }
   });
+
+  if (bookExists === false) {
+    //return <Redirect to="/404" />
+  }
 
   return (
     <motion.div className="App"
