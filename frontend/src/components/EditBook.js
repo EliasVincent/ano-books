@@ -1,6 +1,8 @@
 import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
+import { pageVariants, pageTransition } from "../index";
+import { motion } from "framer-motion";
 
 export default function EditBook(props) {
   let [bookTitle, setBookTitle] = React.useState("");
@@ -82,7 +84,13 @@ export default function EditBook(props) {
   };
 
   return (
-    <div className="App">
+    <motion.div className="App"
+    initial="initial"
+    animate="in"
+    exit="out"
+    variants={pageVariants}
+    transition={pageTransition}
+    >
         <div className={hasBeenEdited ? "successful-edit" : "hidden"}> 
             <p>Book has been edited!</p>
             <p>You can safely return to the homepage neow</p>
@@ -124,6 +132,6 @@ export default function EditBook(props) {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -1,7 +1,10 @@
 import React from "react";
 //import { Redirect } from "react-router-dom";
 import Markdown from "react-markdown";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+
+import { pageVariants, pageTransition } from "../index";
+import { motion } from "framer-motion";
 
 import "../App.css"
 
@@ -42,29 +45,37 @@ export default function Book(props) {
     }
   });
 
-  if (bookExists === false) {
-    //console.log("error bookExists = false");
-  }
-
   return (
-    <div className="App">
+    <motion.div className="App"
+    initial="initial"
+    animate="in"
+    exit="out"
+    variants={pageVariants}
+    transition={pageTransition}
+    >
       <div className="header-container">
         <h1 className="header"><Link className="home-link" to={"/"}>Ano Books</Link></h1>
         <h3 className="subheader">Create and Edit Books</h3>
       </div>
       <hr/>
 
-        <div className="book-container">
+        <motion.div className="book-container"
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageVariants}
+            transition={pageTransition}
+        >
             <div className="book-title">
-                <h1>{fetchedBook.title}</h1>
+                <h1>{fetchedBook.title ? fetchedBook.title : "Loading..."}</h1>
                 </div>
                 <div className="book-description">
-                    <p>{fetchedBook.description}</p>
+                    <p>{fetchedBook.description ? fetchedBook.description : "Loading..."}</p>
                 </div>
                 <div className="book-content-container">
-                    <Markdown className="book-content" children={fetchedBook.content} />
+                    <Markdown className="book-content" children={fetchedBook.content ? fetchedBook.content : "Loading..."} />
                 </div>
-        </div>
-    </div>
+        </motion.div>
+    </motion.div>
   );
 }

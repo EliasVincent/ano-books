@@ -88,7 +88,7 @@ expressApp.get("/books/search/:search", async(req, res) => {
 
 //catch all other routes and get thrown to home
 expressApp.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+    res.sendFile(path.join(__dirname+"/frontend/build/index.html"));
 });
 
 expressApp.listen(PORT, () => {

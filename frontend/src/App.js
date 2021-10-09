@@ -7,6 +7,9 @@ import cover from "./cover.jpg";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 
+import { pageVariants, pageTransition } from "./index";
+import { motion } from "framer-motion";
+
 import CreateBook from "./components/CreateBook";
 
 function App() {
@@ -60,7 +63,13 @@ function App() {
   
 
   return (
-    <div className="App">
+    <motion.div className="App"
+    initial="initial"
+    animate="in"
+    exit="out"
+    variants={pageVariants}
+    transition={pageTransition}
+    >
       <div className="header-container">
         <h1 className="header">
           <Link to={"/"} className="home-link">
@@ -93,7 +102,7 @@ function App() {
 
       <div className="books-container">
         {
-          books.length === 0 ? <h1>No books found</h1> : books
+          books.length === 0 ? <h1>Loading...</h1> : books
           .sort((a, b) => sort ? a.cover.toLowerCase().localeCompare(b.cover.toLowerCase()) : a.book_id - b.book_id)
           .map((book) => {
             return (
@@ -151,7 +160,7 @@ function App() {
           </small>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
